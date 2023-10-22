@@ -5,20 +5,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
   public:
-    vector<int> duplicates(int arr[], int n) {
+    vector<int> duplicates(long long arr[], int n) {
         // code here
-        vector<int>v;
-        int cnt[n] = {0};
+        long long maxi = *max_element(arr,arr+n);
+        vector<int>v(maxi+1,0);
+        vector<int>res;
         for (int i=0;i<n;i++){
-            cnt[arr[i]]++;
+            v[arr[i]]++;
         }
-        for(int i=0;i<n;i++){
-            if (cnt[i]>=2){
-                v.push_back(i);
+        for (int i=0;i<=maxi;i++){
+            if (v[i]>=2){
+                res.push_back(i);
             }
         }
-        if (v.size()==0) v.push_back(-1);
-        return v;
+        if (res.size()==0) res.push_back(-1);
+        return res;
     }
 };
 
@@ -30,7 +31,7 @@ int main() {
     while (t-- > 0) {
         int n;
         cin >> n;
-        int a[n];
+        long long a[n];
         for (int i = 0; i < n; i++) cin >> a[i];
         Solution obj;
         vector<int> ans = obj.duplicates(a, n);
