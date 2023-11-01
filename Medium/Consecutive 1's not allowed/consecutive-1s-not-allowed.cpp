@@ -17,10 +17,11 @@ public:
 	    ll a = 2;
 	    ll b = 3;
 	    ll c;
-	    for (ll int i=2;i<n;i++){
+	    n-=2;
+	    while (n--){
 	        c = (a+b)%mod;
-	        a=b;
-	        b=c;
+	        a = b;
+	        b = c;
 	    }
 	    return c;
 	}
