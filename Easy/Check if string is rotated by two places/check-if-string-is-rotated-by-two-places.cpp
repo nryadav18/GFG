@@ -6,6 +6,18 @@ using namespace std;
 // } Driver Code Ends
 class Solution
 {
+    private:
+        void anti_clockwise(string &s){
+            reverse(s.begin(),s.begin()+2);
+            reverse(s.begin()+2,s.end());
+            reverse(s.begin(),s.end());
+        }
+    private:
+        void clockwise(string &s){
+            reverse(s.begin(),s.end()-2);
+            reverse(s.end()-2,s.end());
+            reverse(s.begin(),s.end());
+        }
     public:
     //Function to check if a string can be obtained by rotating
     //another string by exactly 2 places.
@@ -17,20 +29,14 @@ class Solution
         if (n==2 and str1==str2) return true;
         if (str1==str2) return false;
         if (n!=m) return false;
-        string res1;
-        for (int i=2;i<n;i++){
-            res1 += str1[i];
-        }
-        res1 += str1[0];
-        res1 += str1[1];
-        if (res1==str2) return true;
-        string res2;
-        res2 += str1[n-2];
-        res2 += str1[n-1];
-        for (int i=0;i<n-2;i++){
-            res2 += str1[i];
-        }
-        return res2==str2;
+        anti_clockwise(str1);
+        if (str1==str2) return true;
+        //cout << str1 <<  " ";
+        clockwise(str1);
+        clockwise(str1);
+        //cout << str1 << " ";
+        if (str1==str2) return true;
+        return false;
     }
 
 };
