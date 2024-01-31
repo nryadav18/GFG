@@ -12,18 +12,28 @@ class Solution
 {
   public:
     //Function to check if a string is Pangram or not.
-    bool checkPangram (string &str) {
+    bool checkPangram (string s) {
         // your code here
         vector<int>v(26,0);
-        for (auto i:str){
-            if (isupper(i)){
-                v[i-'A']++;
+        int n = s.length();
+        if (n < 26){
+            return false;
+        }
+        for (auto it : s){
+            if (isupper(it)){
+                int val = it - 'A';
+                v[val]++;
             }
-            else if (islower(i)){
-                v[i-'a']++;
+            else if (islower(it)){
+                int val = it - 'a';
+                v[val]++;
             }
         }
-        for (auto i:v) if (i==0) return false;
+        for (auto it : v){
+            if (it == 0){
+                return false;
+            }
+        }
         return true;
     }
 
@@ -38,10 +48,10 @@ int main()
     cin>>t;
     cin.ignore(INT_MAX, '\n');
     while(t--){
-        string str;
-        getline(cin, str);
+        string s;
+        getline(cin, s);
         Solution obj;
-        if (obj.checkPangram(str) == true)
+        if (obj.checkPangram(s) == true)
             cout<<1<<endl;
         else
             cout<<0<<endl;
