@@ -49,17 +49,21 @@ class Solution
     bool detectLoop(Node* head)
     {
         // your code here
+        if (head->next==NULL or head==NULL or head->next->next==NULL){
+            return false;
+        }
+        Node* raj = head;
+        Node* jyo = head->next->next;
         while (1){
-            if (head==NULL){
+            if (raj==NULL or raj->next==NULL or jyo==NULL or jyo->next==NULL){
                 return false;
             }
-            if (head->data==0){
+            else if (raj->next == jyo->next){
                 return true;
             }
-            head->data = 0;
-            head = head->next;
+            raj = raj->next;
+            jyo = jyo->next->next;
         }
-        if (head==NULL) return true;
         return false;
     }
 };
