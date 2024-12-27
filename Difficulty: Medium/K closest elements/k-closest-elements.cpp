@@ -14,11 +14,9 @@ class Solution {
         // code here
         int low = lower_bound(arr.begin(),arr.end(),x)-arr.begin();
         int upp = upper_bound(arr.begin(),arr.end(),x)-arr.begin();
-        int i,j;
+        int i = low - 1, j = upp;
         vector<int>result;
-        if (arr[low] == x) i = low-1, j = upp;
-        else if (low == upp) i = upp-1, j = upp;
-        while (k > 0 and i >= 0 and j<n){
+        while (k and i >= 0 and j<n){
             if (x - arr[i] < arr[j] - x){
                 result.push_back(arr[i--]);
             }
